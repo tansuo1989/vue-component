@@ -1,31 +1,21 @@
-
-# 用法：
-
-
-* 安装：
-<code> npm i vue-myarea </code>
-
-* 使用：
-
-	&lt;template&gt;
-
-	&lt;myarea @select="haha"&gt;&lt;myarea&gt;
-
-	&lt;/template &gt;
+## vue-myarea 
+readme.md [点这里](https://github.com/tansuo1989/vue-myarea/blob/master/src/vue-myarea/readme.md)
 
 
-	<code>
-	&lt;script&gt;
+## Build Setup
 
-		methods:{
-			haha:function(d){
-				console.log(d);
-			}
-		}	
-	&lt;/script&gt;	
-	</code>
+``` bash
+# install dependencies
+npm install
 
-* 数据（data.js) 换了一个版本的，应该比之前的要新一些	
+# serve with hot reload at localhost:8080
+npm run dev
 
+# build for production with minification
+npm run build
 
+# build for production and view the bundle analyzer report
+npm run build --report
+```
 
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

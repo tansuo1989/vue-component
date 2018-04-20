@@ -2,13 +2,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-			<select v-model="f.p" @change="selpro">
+			<select v-model="f.p" @change="sel_pro">
 				<option :value="i" v-for="(v,i) in pro" :key="v.id">{{v.name}}</option>
 			</select>
 			</div>
 
 			<div class="col">
-			<select v-model="f.c" @change="selcity">
+			<select v-model="f.c" @change="sel_city">
 				<option :value="i" v-for="(v,i) in city" :key="v.id">{{v.name}}</option>
 			</select>
 			</div>
@@ -47,34 +47,43 @@ export default {
        		}
 		}
 	},
+	props:{
+	   pindex:{type:[Number,String],default:0},
+	   cindex:{type:[Number,String],default:0},
+	   ccindex:{type:[Number,String],default:0},
+	},
 	created:function(){
+		console.log(data);
 		this.pro=this.data;
-		this.city=this.pro[0]['child'];
-		this.county=this.city[0]['child'];
+		this.f.p=this.pindex;
+		this.city=this.pro[this.pindex]['child'];
+		this.f.c=this.cindex;
+		this.county=this.city[this.cindex]['child'];
+		this.f.cc=this.ccindex;
 		this.result();
 	},
 	methods:{
-		selpro:function(){
+		sel_pro:function(){
 			this.city=this.pro[this.f.p]['child'];
 			this.county=this.city[0]['child'];
 			this.f.c=0;
 			this.f.cc=0;
 			this.result();
 		},
-		selcity:function(){
+		sel_city:function(){
 			this.county=this.city[this.f.c]['child']?this.city[this.f.c]['child']:[];
 			this.f.cc=0;
 			this.result();
 		},
 		result:function(){
 			var re={
-				pro:{id:this.pro[this.f.p].id,name:this.pro[this.f.p].name},
-				city:{id:this.city[this.f.c].id,name:this.city[this.f.c].name},
+				pro:{sid:this.pro[this.f.p].id,name:this.pro[this.f.p].name,index:this.f.p},
+				city:{sid:this.city[this.f.c].id,name:this.city[this.f.c].name,index:this.f.c},
 			};
 			if(this.county.length>0){
-             re.county={id:this.county[this.f.cc].id,name:this.county[this.f.cc].name};
+             re.county={sid:this.county[this.f.cc].id,name:this.county[this.f.cc].name,index:this.f.cc};
 			}else{
-				re.county={id:"",name:""};
+				re.county={sid:"",name:"",index:""};
 			}
 			this.$emit("select",re);
 		}
