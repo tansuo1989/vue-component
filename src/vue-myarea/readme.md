@@ -23,7 +23,7 @@
 ```
 
 # 说明：
-1. 默认的省市区对应的属性：pindex,cindex,ddindex，对应的是选择后pro,city,county中的 index 的值
+1. 默认的省市区对应的属性：pindex，cindex，ddindex，对应的是选择后 pro，city，county 中的 index 的值
 2. 如果后端需要对应的数据的话，可以使用 [这个文件](https://github.com/tansuo1989/vue-myarea/blob/master/src/vue-myarea/vue_myarea.sql)
 
 # demo 请下载后运行：[网址](https://github.com/tansuo1989/vue-myarea)

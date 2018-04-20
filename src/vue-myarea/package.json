@@ -1,6 +1,6 @@
 {
   "name": "vue-myarea",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "地区选择器",
   "author": "huangui9@qq.com",
   "main":"./area.vue",
