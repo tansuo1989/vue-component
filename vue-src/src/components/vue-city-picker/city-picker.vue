@@ -1,33 +1,37 @@
 <template>
 	<div class="container">
-		<div class="row">
-			<div class="col">
-			<select v-model="f.p" @change="sel_pro">
-				<option :value="i" v-for="(v,i) in pro" :key="v.id">{{v.name}}</option>
-			</select>
-			</div>
+        <div class="row">
+            <select v-model="f.p" @change="sel_pro">
+                <option :value="i" v-for="(v,i) in pro" :key="v.id">{{v.name}}</option>
+            </select>
+        </div>
 
-			<div class="col">
-			<select v-model="f.c" @change="sel_city">
-				<option :value="i" v-for="(v,i) in city" :key="v.id">{{v.name}}</option>
-			</select>
-			</div>
+        <div class="row">
+            <select v-model="f.c" @change="sel_city">
+                <option :value="i" v-for="(v,i) in city" :key="v.id">{{v.name}}</option>
+            </select>
+        </div>
 
-			<div class="col">
-			<select v-model="f.cc" v-show="county.length>0" @change="result">
-				<option :value="i" v-for="(v,i) in county" :key="v.id">{{v.name}}</option>
-			</select>
-			</div>
-
-		</div>
-
+        <div class="row">
+        <select v-model="f.cc" v-show="county.length>0" @change="result">
+            <option :value="i" v-for="(v,i) in county" :key="v.id">{{v.name}}</option>
+        </select>
+        </div>
 	</div>
 </template>
 
 <style scoped>
-.row{display: flex;}
-.col{flex-grow:1;}
-select{width:96%;padding:.5rem;border:1px solid #eee;margin:2%;border-radius: .3rem;font-size: 1.2rem;}
+.row{
+    display: flex;
+}
+select{
+    width:96%;
+    padding:.5rem;
+    border:1px solid #eee;
+    margin:0 2% .2rem;
+    border-radius: .3rem;
+    font-size: 1.2rem;
+}
 </style>
 
 <script>
@@ -41,16 +45,16 @@ export default {
            city:"",
            county:"",
            f:{
-	           p:0,
-	           c:0,
-	           cc:0,
-       		}
+                p:0,
+                c:0,
+                cc:0,
+            }
 		}
 	},
 	props:{
-	   pindex:{type:[Number,String],default:0},
-	   cindex:{type:[Number,String],default:0},
-	   ccindex:{type:[Number,String],default:0},
+        pindex:{type:[Number,String],default:0},
+        cindex:{type:[Number,String],default:0},
+        ccindex:{type:[Number,String],default:0},
 	},
 	created:function(){
 		console.log(data);

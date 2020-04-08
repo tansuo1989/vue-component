@@ -1,18 +1,11 @@
 {
-  "name": "vue-myarea",
-  "version": "1.2.2",
+  "name": "tansuo-city-picker",
+  "version": "1.0.0",
   "description": "地区选择器",
   "author": "huangui9@qq.com",
-  "main":"./area.vue",
-  "scripts": {
-    "vue-watch":"webpack --watch"
-  },
+  "main":"./city-picker.vue",
   "dependencies": {
     "vue": "2.*"
-  },
-  "devDependencies": {
-    "webpack": "^2.3.3",
-    "webpack-dev-server":"*"
   },
   "engines": {
     "node": ">= 4.0.0",
