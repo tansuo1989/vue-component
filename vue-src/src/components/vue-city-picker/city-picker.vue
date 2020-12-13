@@ -6,16 +6,16 @@
             </select>
         </div>
 
-        <div class="row">
+        <div class="row" v-show="city.length>0">
             <select v-model="f.c" @change="sel_city">
                 <option :value="i" v-for="(v,i) in city" :key="v.id">{{v.name}}</option>
             </select>
         </div>
 
-        <div class="row">
-        <select v-model="f.cc" v-show="county.length>0" @change="result">
-            <option :value="i" v-for="(v,i) in county" :key="v.id">{{v.name}}</option>
-        </select>
+        <div class="row" v-show="county.length>0">
+			<select v-model="f.cc" v-show="county.length>0" @change="result">
+				<option :value="i" v-for="(v,i) in county" :key="v.id">{{v.name}}</option>
+			</select>
         </div>
 	</div>
 </template>
@@ -68,8 +68,18 @@ export default {
 	},
 	methods:{
 		sel_pro:function(){
-			this.city=this.pro[this.f.p]['child'];
-			this.county=this.city[0]['child'];
+			if(this.pro[this.f.p]['child']){
+				this.city=this.pro[this.f.p]['child'];
+				console.log("city",this.city);
+				if(this.city[0]['child']){
+					this.county=this.city[0]['child'];
+				}else{
+					this.county=[];
+				}
+			}else{
+				this.city=[];
+				this.county=[];
+			}
 			this.f.c=0;
 			this.f.cc=0;
 			this.result();
@@ -81,13 +91,29 @@ export default {
 		},
 		result:function(){
 			var re={
-				pro:{sid:this.pro[this.f.p].id,name:this.pro[this.f.p].name,index:this.f.p},
-				city:{sid:this.city[this.f.c].id,name:this.city[this.f.c].name,index:this.f.c},
+				pro:{
+					sid:this.pro[this.f.p].id,
+					name:this.pro[this.f.p].name,
+					index:this.f.p
+				},
+				city:{
+					sid:this.city[this.f.c]?this.city[this.f.c].id:0,
+					name:this.city[this.f.c]?this.city[this.f.c].name:'',
+					index:this.f.c
+				},
 			};
 			if(this.county.length>0){
-             re.county={sid:this.county[this.f.cc].id,name:this.county[this.f.cc].name,index:this.f.cc};
+					re.county={
+						sid:this.county[this.f.cc].id,
+						name:this.county[this.f.cc].name,
+						index:this.f.cc
+					};
 			}else{
-				re.county={sid:"",name:"",index:""};
+				re.county={
+					sid:0,
+					name:"",
+					index:0
+				};
 			}
 			this.$emit("select",re);
 		}
